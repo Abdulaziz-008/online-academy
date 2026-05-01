@@ -30,34 +30,37 @@ export default function LoginPage() {
     }
   }
 
-  const demoLogin = async (role: 'admin' | 'student') => {
-    const creds = role === 'admin'
-      ? { email: 'admin@academy.uz', password: 'admin123' }
-      : { email: 'student@academy.uz', password: 'student123' }
-    setEmail(creds.email)
-    setPassword(creds.password)
-    setLoading(true)
-    const result = await login(creds.email, creds.password)
-    setLoading(false)
-    if (result.success) {
-      router.push(role === 'admin' ? '/admin' : '/student/dashboard')
-    }
+  const demoLogin = (role: 'admin' | 'student') => {
+  if (role === 'admin') {
+    setEmail('admin@academy.uz')
+    setPassword('admin123')
+  } else {
+    setEmail('student@academy.uz')
+    setPassword('student123')
   }
+}
 
   return (
-    <div className="min-h-screen flex relative overflow-hidden" style={{background:'linear-gradient(135deg, #0f2027 0%, #203a43 40%, #2c5364 100%)'}}>
+    <div className="min-h-screen flex relative overflow-hidden"
+      style={{ background: 'linear-gradient(135deg, #0f2027 0%, #203a43 40%, #2c5364 100%)' }}>
+
       {/* Background effects */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full opacity-40 blur-3xl" style={{background:'radial-gradient(circle, #38bdf8 0%, #0ea5e9 40%, transparent 70%)'}} />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full opacity-35 blur-3xl" style={{background:'radial-gradient(circle, #fb923c 0%, #f97316 40%, transparent 70%)'}} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full opacity-20 blur-3xl" style={{background:'radial-gradient(circle, #a78bfa 0%, transparent 70%)'}} />
-        <div className="absolute inset-0" style={{backgroundImage:'radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)', backgroundSize:'40px 40px'}} />
+        <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-40 blur-3xl"
+          style={{ background: 'radial-gradient(circle, #38bdf8 0%, #0ea5e9 40%, transparent 70%)' }} />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full opacity-35 blur-3xl"
+          style={{ background: 'radial-gradient(circle, #fb923c 0%, #f97316 40%, transparent 70%)' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full opacity-20 blur-3xl"
+          style={{ background: 'radial-gradient(circle, #a78bfa 0%, transparent 70%)' }} />
+        <div className="absolute inset-0"
+          style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
       </div>
 
-      {/* Left: Branding */}
+      {/* Left branding — faqat katta ekranda */}
       <div className="hidden lg:flex flex-col justify-between flex-1 p-12 relative">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{background:'linear-gradient(135deg,#0284c7,#0ea5e9)'}}>
+          <div className="w-10 h-10 rounded-xl flex items-center justify-center"
+            style={{ background: 'linear-gradient(135deg,#0284c7,#0ea5e9)' }}>
             <GraduationCap size={20} className="text-white" />
           </div>
           <span className="font-display font-bold text-xl text-white">EduAdmin</span>
@@ -65,7 +68,8 @@ export default function LoginPage() {
 
         <div>
           <div className="mb-6">
-            <span className="text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full" style={{background:'rgba(14,165,233,0.15)', color:'#0ea5e9'}}>
+            <span className="text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full"
+              style={{ background: 'rgba(14,165,233,0.2)', color: '#7dd3fc' }}>
               Online Academy Platform
             </span>
           </div>
@@ -73,7 +77,7 @@ export default function LoginPage() {
             Ta'limni boshqar,<br />
             <span className="gradient-text">kelajakni qur</span>
           </h2>
-          <p className="text-gray-400 text-lg leading-relaxed max-w-md">
+          <p className="text-blue-200 text-lg leading-relaxed max-w-md opacity-80">
             Markazlashgan boshqaruv tizimi bilan kurslar, studentlar va to'lovlarni osonlik bilan nazorat qiling.
           </p>
 
@@ -83,22 +87,28 @@ export default function LoginPage() {
               { icon: <Zap size={18} />, value: '42', label: 'Kurslar' },
               { icon: <Shield size={18} />, value: '99.9%', label: 'Uptime' },
             ].map((stat, i) => (
-              <div key={i} className="glass rounded-xl p-4 text-center">
-                <div className="flex justify-center mb-2 text-sky-400">{stat.icon}</div>
+              <div key={i} className="rounded-xl p-4 text-center"
+                style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)' }}>
+                <div className="flex justify-center mb-2 text-sky-300">{stat.icon}</div>
                 <div className="font-display font-bold text-xl text-white">{stat.value}</div>
-                <div className="text-xs text-gray-500 mt-0.5">{stat.label}</div>
+                <div className="text-xs text-blue-300 mt-0.5 opacity-70">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="text-xs text-gray-700">© 2024 EduAdmin. Barcha huquqlar himoyalangan.</div>
+        <div className="text-xs text-blue-300 opacity-40">© 2024 EduAdmin. Barcha huquqlar himoyalangan.</div>
       </div>
 
       {/* Right: Login form */}
-      <div className="w-full lg:w-[480px] flex flex-col justify-center px-6 lg:px-12 relative" style={{borderLeft:'1px solid rgba(255,255,255,0.05)'}}>
+      <div
+        className="w-full lg:w-[480px] flex flex-col justify-center px-5 sm:px-10 lg:px-12 relative min-h-screen"
+        style={{ background: 'rgba(10,10,20,0.6)', backdropFilter: 'blur(30px)', borderLeft: '1px solid rgba(255,255,255,0.07)' }}
+      >
+        {/* Mobile logo */}
         <div className="lg:hidden flex items-center gap-3 mb-8">
-          <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{background:'linear-gradient(135deg,#0284c7,#0ea5e9)'}}>
+          <div className="w-9 h-9 rounded-xl flex items-center justify-center"
+            style={{ background: 'linear-gradient(135deg,#0284c7,#0ea5e9)' }}>
             <GraduationCap size={17} className="text-white" />
           </div>
           <span className="font-display font-bold text-lg text-white">EduAdmin</span>
@@ -106,83 +116,155 @@ export default function LoginPage() {
 
         <div className="mb-8">
           <h1 className="font-display font-bold text-3xl text-white mb-2">Xush kelibsiz 👋</h1>
-          <p className="text-gray-500">Davom etish uchun hisobingizga kiring</p>
+          <p style={{ color: 'rgba(255,255,255,0.5)' }}>Davom etish uchun hisobingizga kiring</p>
         </div>
 
         {/* Demo buttons */}
         <div className="grid grid-cols-2 gap-3 mb-6">
           <button
             onClick={() => demoLogin('admin')}
-            disabled={loading}
-            className="glass p-3 rounded-xl text-left hover:bg-white/5 transition-all group border border-sky-500/20 hover:border-sky-500/40"
+            className="p-3 rounded-xl text-left transition-all"
+            style={{ background: 'rgba(14,165,233,0.1)', border: '1px solid rgba(14,165,233,0.25)' }}
           >
-            <div className="text-xs text-sky-400 font-semibold mb-0.5">Demo Admin</div>
-            <div className="text-xs text-gray-600">admin@academy.uz</div>
+            <div className="text-xs text-sky-400 font-bold mb-0.5">Demo Admin</div>
+            <div className="text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>admin@academy.uz</div>
           </button>
           <button
             onClick={() => demoLogin('student')}
-            disabled={loading}
-            className="glass p-3 rounded-xl text-left hover:bg-white/5 transition-all group border border-orange-500/20 hover:border-orange-500/40"
+            className="p-3 rounded-xl text-left transition-all"
+            style={{ background: 'rgba(249,115,22,0.1)', border: '1px solid rgba(249,115,22,0.25)' }}
           >
-            <div className="text-xs text-orange-400 font-semibold mb-0.5">Demo Student</div>
-            <div className="text-xs text-gray-600">student@academy.uz</div>
+            <div className="text-xs text-orange-400 font-bold mb-0.5">Demo Student</div>
+            <div className="text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>student@academy.uz</div>
           </button>
         </div>
 
         <div className="flex items-center gap-3 mb-6">
-          <div className="flex-1 h-px" style={{background:'rgba(255,255,255,0.08)'}}/>
-          <span className="text-xs text-gray-600">yoki email bilan</span>
-          <div className="flex-1 h-px" style={{background:'rgba(255,255,255,0.08)'}}/>
+          <div className="flex-1 h-px" style={{ background: 'rgba(255,255,255,0.1)' }} />
+          <span className="text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>yoki email bilan</span>
+          <div className="flex-1 h-px" style={{ background: 'rgba(255,255,255,0.1)' }} />
         </div>
 
         <form onSubmit={handleLogin} className="space-y-4">
+          {/* Email */}
           <div>
-            <label className="text-sm text-gray-400 font-medium mb-1.5 block">Email manzil</label>
+            <label className="text-sm font-medium mb-1.5 block" style={{ color: 'rgba(255,255,255,0.6)' }}>
+              Email manzil
+            </label>
             <div className="relative">
-              <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
+              <Mail
+                size={16}
+                className="absolute top-1/2 -translate-y-1/2 pointer-events-none"
+                style={{ left: 14, color: 'rgba(255,255,255,0.3)' }}
+              />
               <input
                 type="email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
-                className="input-base pl-10"
-                placeholder="email@example.com"
                 required
+                placeholder="email@example.com"
+                style={{
+                  width: '100%',
+                  paddingTop: 12,
+                  paddingBottom: 12,
+                  paddingLeft: 42,
+                  paddingRight: 14,
+                  background: 'rgba(255,255,255,0.07)',
+                  border: '1px solid rgba(255,255,255,0.12)',
+                  borderRadius: 10,
+                  color: '#ffffff',
+                  fontSize: 14,
+                  outline: 'none',
+                  fontFamily: 'inherit',
+                  transition: 'all 0.2s',
+                }}
+                onFocus={e => {
+                  e.target.style.borderColor = 'rgba(14,165,233,0.6)'
+                  e.target.style.background = 'rgba(14,165,233,0.08)'
+                  e.target.style.boxShadow = '0 0 0 3px rgba(14,165,233,0.1)'
+                }}
+                onBlur={e => {
+                  e.target.style.borderColor = 'rgba(255,255,255,0.12)'
+                  e.target.style.background = 'rgba(255,255,255,0.07)'
+                  e.target.style.boxShadow = 'none'
+                }}
               />
             </div>
           </div>
 
+          {/* Password */}
           <div>
-            <label className="text-sm text-gray-400 font-medium mb-1.5 block">Parol</label>
+            <label className="text-sm font-medium mb-1.5 block" style={{ color: 'rgba(255,255,255,0.6)' }}>
+              Parol
+            </label>
             <div className="relative">
-              <Lock size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
+              <Lock
+                size={16}
+                className="absolute top-1/2 -translate-y-1/2 pointer-events-none"
+                style={{ left: 14, color: 'rgba(255,255,255,0.3)' }}
+              />
               <input
                 type={showPass ? 'text' : 'password'}
                 value={password}
                 onChange={e => setPassword(e.target.value)}
-                className="input-base pl-10 pr-10"
-                placeholder="••••••••"
                 required
+                placeholder="••••••••"
+                style={{
+                  width: '100%',
+                  paddingTop: 12,
+                  paddingBottom: 12,
+                  paddingLeft: 42,
+                  paddingRight: 44,
+                  background: 'rgba(255,255,255,0.07)',
+                  border: '1px solid rgba(255,255,255,0.12)',
+                  borderRadius: 10,
+                  color: '#ffffff',
+                  fontSize: 14,
+                  outline: 'none',
+                  fontFamily: 'inherit',
+                  transition: 'all 0.2s',
+                }}
+                onFocus={e => {
+                  e.target.style.borderColor = 'rgba(14,165,233,0.6)'
+                  e.target.style.background = 'rgba(14,165,233,0.08)'
+                  e.target.style.boxShadow = '0 0 0 3px rgba(14,165,233,0.1)'
+                }}
+                onBlur={e => {
+                  e.target.style.borderColor = 'rgba(255,255,255,0.12)'
+                  e.target.style.background = 'rgba(255,255,255,0.07)'
+                  e.target.style.boxShadow = 'none'
+                }}
               />
               <button
                 type="button"
                 onClick={() => setShowPass(!showPass)}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors"
+                className="absolute top-1/2 -translate-y-1/2 transition-colors"
+                style={{ right: 14, color: 'rgba(255,255,255,0.3)' }}
+                onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.7)')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.3)')}
               >
                 {showPass ? <EyeOff size={16} /> : <Eye size={16} />}
               </button>
             </div>
           </div>
 
+          {/* Error */}
           {error && (
-            <div className="p-3 rounded-xl text-sm text-red-400 animate-shake" style={{background:'rgba(239,68,68,0.1)', border:'1px solid rgba(239,68,68,0.2)'}}>
+            <div className="p-3 rounded-xl text-sm text-red-400"
+              style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)' }}>
               {error}
             </div>
           )}
 
+          {/* Submit */}
           <button
             type="submit"
             disabled={loading}
-            className="btn-primary w-full justify-center py-3 text-base mt-2"
+            className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-semibold text-base text-white transition-all mt-2"
+            style={{
+              background: loading ? 'rgba(14,165,233,0.5)' : 'linear-gradient(135deg, #0284c7, #0ea5e9)',
+              boxShadow: loading ? 'none' : '0 8px 25px rgba(14,165,233,0.35)',
+            }}
           >
             {loading ? (
               <>
@@ -193,10 +275,12 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <div className="mt-6 p-4 rounded-xl" style={{background:'rgba(255,255,255,0.02)', border:'1px solid rgba(255,255,255,0.06)'}}>
-          <p className="text-xs text-gray-600 text-center">
-            Admin: <span className="text-gray-400">admin@academy.uz / admin123</span><br/>
-            Student: <span className="text-gray-400">student@academy.uz / student123</span>
+        {/* Hint */}
+        <div className="mt-6 p-4 rounded-xl"
+          style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
+          <p className="text-xs text-center" style={{ color: 'rgba(255,255,255,0.3)' }}>
+            Admin: <span style={{ color: 'rgba(255,255,255,0.55)' }}>admin@academy.uz / admin123</span><br />
+            Student: <span style={{ color: 'rgba(255,255,255,0.55)' }}>student@academy.uz / student123</span>
           </p>
         </div>
       </div>
