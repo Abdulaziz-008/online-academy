@@ -92,3 +92,93 @@ export function formatNumber(n: number): string {
   if (n >= 1000) return `${(n/1000).toFixed(1)}K`
   return n.toString()
 }
+
+
+export interface Lesson {
+  id: string
+  courseId: string
+  title: string
+  description: string
+  youtubeUrl: string
+  duration: string
+  order: number
+  isFree: boolean
+}
+
+export const mockLessons: Lesson[] = [
+  {
+    id: 'l1', courseId: '1',
+    title: 'React nima? Kirish darsi',
+    description: 'Bu darsda React.js haqida umumiy ma\'lumot beramiz.',
+    youtubeUrl: 'https://www.youtube.com/watch?v=Ke90Tje7VS0',
+    duration: '12:34', order: 1, isFree: true,
+  },
+  {
+    id: 'l2', courseId: '1',
+    title: 'JSX va Komponentlar',
+    description: 'JSX sintaksisi va komponentlar yaratish.',
+    youtubeUrl: 'https://www.youtube.com/watch?v=SqcY0GlETPk',
+    duration: '18:20', order: 2, isFree: true,
+  },
+  {
+    id: 'l3', courseId: '1',
+    title: 'Props va State',
+    description: 'Ma\'lumot uzatish va state boshqarish.',
+    youtubeUrl: 'https://www.youtube.com/watch?v=4UZrsTqkcW4',
+    duration: '22:15', order: 3, isFree: false,
+  },
+  {
+    id: 'l4', courseId: '1',
+    title: 'useState Hook',
+    description: 'useState hook bilan ishlash.',
+    youtubeUrl: 'https://www.youtube.com/watch?v=O6P86uwfdR0',
+    duration: '16:40', order: 4, isFree: false,
+  },
+  {
+    id: 'l5', courseId: '1',
+    title: 'useEffect Hook',
+    description: 'useEffect va lifecycle metodlar.',
+    youtubeUrl: 'https://www.youtube.com/watch?v=0ZJgIjIuY7U',
+    duration: '20:10', order: 5, isFree: false,
+  },
+  {
+    id: 'l6', courseId: '2',
+    title: 'Node.js ga kirish',
+    description: 'Node.js nima va qanday ishlaydi.',
+    youtubeUrl: 'https://www.youtube.com/watch?v=TlB_eWDSMt4',
+    duration: '14:22', order: 1, isFree: true,
+  },
+  {
+    id: 'l7', courseId: '2',
+    title: 'Express.js asoslari',
+    description: 'Express.js bilan server yaratish.',
+    youtubeUrl: 'https://www.youtube.com/watch?v=L72fhGm1tfE',
+    duration: '25:18', order: 2, isFree: true,
+  },
+  {
+    id: 'l8', courseId: '2',
+    title: 'REST API yaratish',
+    description: 'CRUD operatsiyalari va REST API.',
+    youtubeUrl: 'https://www.youtube.com/watch?v=pKd0Rpw7O48',
+    duration: '30:05', order: 3, isFree: false,
+  },
+  {
+    id: 'l9', courseId: '3',
+    title: 'Flutter ga kirish',
+    description: 'Flutter va Dart tilini o\'rganamiz.',
+    youtubeUrl: 'https://www.youtube.com/watch?v=1ukSR1GRtMU',
+    duration: '19:30', order: 1, isFree: true,
+  },
+  {
+    id: 'l10', courseId: '4',
+    title: 'Figma interfeysi',
+    description: 'Figma dasturini o\'rganamiz.',
+    youtubeUrl: 'https://www.youtube.com/watch?v=FTFaQWZBqQ8',
+    duration: '11:45', order: 1, isFree: true,
+  },
+]
+
+export function getYoutubeId(url: string): string {
+  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/)
+  return match ? match[1] : ''
+}
