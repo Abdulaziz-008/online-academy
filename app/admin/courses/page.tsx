@@ -160,50 +160,52 @@ export default function CoursesPage() {
             return (
               <div key={course.id}>
                 {/* Course row */}
-                <div className="px-5 py-4 flex items-center gap-4 hover:bg-white/3 transition-colors">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0"
+                <div className="px-3 sm:px-5 py-4 flex items-center gap-2 sm:gap-4 flex-wrap hover:bg-white/3 transition-colors">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-xl sm:text-2xl flex-shrink-0"
                     style={{ background: 'rgba(255,255,255,0.06)' }}>
                     {course.image}
                   </div>
 
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="text-sm font-semibold truncate" style={{ color: 'var(--color-text)' }}>
+                  <div className="flex-1 min-w-0" style={{minWidth: 0}}>
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                      <h3 className="text-sm font-semibold truncate" style={{ color: 'var(--color-text)', maxWidth: '100%' }}>
                         {course.title}
                       </h3>
                       <Badge variant={course.status === 'published' ? 'success' : 'warning'}>
                         {course.status === 'published' ? t('courseStatus_published') : t('courseStatus_draft')}
                       </Badge>
                     </div>
-                    <div className="flex items-center gap-4 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                      <span className="flex items-center gap-1"><Users size={11} /> {course.students} {t('students')}</span>
-                      <span className="flex items-center gap-1"><BookOpen size={11} /> {courseLessons.length} dars</span>
+                    <div className="flex items-center gap-2 sm:gap-4 text-xs flex-wrap" style={{ color: 'var(--color-text-muted)' }}>
+                      <span className="flex items-center gap-1"><Users size={11} /> {course.students}</span>
+                      <span className="flex items-center gap-1"><BookOpen size={11} /> {courseLessons.length}</span>
                       <span className="flex items-center gap-1"><Clock size={11} /> {course.duration}</span>
                       {course.rating > 0 && (
                         <span className="flex items-center gap-1 text-yellow-400"><Star size={11} fill="currentColor" /> {course.rating}</span>
                       )}
-                      <span className="font-semibold text-sky-400">{(course.price / 1000).toFixed(0)}K so'm</span>
+                      <span className="font-semibold text-sky-400">{(course.price / 1000).toFixed(0)}K</span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2 flex-shrink-0">
+                  <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0 flex-wrap justify-end">
                     {/* Add lesson button */}
                     <button
                       onClick={() => { setSelectedCourseId(course.id); setShowLessonModal(true) }}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all"
+                      className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg text-xs font-semibold transition-all"
                       style={{ background: 'rgba(249,115,22,0.1)', color: '#f97316', border: '1px solid rgba(249,115,22,0.2)' }}
                     >
-                      <Youtube size={13} /> Dars qo'sh
+                      <Youtube size={13} />
+                      <span className="hidden sm:inline">Dars qo'sh</span>
                     </button>
 
                     {/* Expand lessons */}
                     <button
                       onClick={() => setExpandedCourse(isExpanded ? null : course.id)}
-                      className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all"
+                      className="flex items-center gap-1 px-2 sm:px-3 py-1.5 rounded-lg text-xs font-semibold transition-all"
                       style={{ background: 'rgba(14,165,233,0.1)', color: '#0ea5e9', border: '1px solid rgba(14,165,233,0.2)' }}
                     >
                       {isExpanded ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
-                      {courseLessons.length} dars
+                      <span className="hidden sm:inline">{courseLessons.length} dars</span>
+                      <span className="sm:hidden">{courseLessons.length}</span>
                     </button>
 
                     {/* More menu */}

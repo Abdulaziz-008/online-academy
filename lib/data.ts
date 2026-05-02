@@ -182,3 +182,110 @@ export function getYoutubeId(url: string): string {
   const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/)
   return match ? match[1] : ''
 }
+
+export const studentData: Record<string, {
+  purchasedIds: string[]
+  progresses: Record<string, number>
+  hoursLearned: string
+  testsPassed: number
+  streak: number
+  recentActivity: { type: string; text: string; time: string; icon: string }[]
+}> = {
+  '2': { // Alisher Karimov
+    purchasedIds: ['1', '2', '4'],
+    progresses: { '1': 68, '2': 35, '4': 90 },
+    hoursLearned: '48h',
+    testsPassed: 12,
+    streak: 7,
+    recentActivity: [
+      { type: 'lesson', text: 'React Hooks darsini yakunladingiz', time: '2 soat oldin', icon: '✅' },
+      { type: 'test', text: 'JavaScript quiz\'da 85% natija oldingiz', time: 'Kecha', icon: '📝' },
+      { type: 'course', text: 'Node.js kursiga yozildingiz', time: '3 kun oldin', icon: '📚' },
+      { type: 'cert', text: 'HTML/CSS sertifikatini oldingiz', time: '1 hafta oldin', icon: '🏆' },
+    ],
+  },
+  '3': { // Dilnoza Yusupova
+    purchasedIds: ['2'],
+    progresses: { '2': 55 },
+    hoursLearned: '20h',
+    testsPassed: 4,
+    streak: 3,
+    recentActivity: [
+      { type: 'lesson', text: 'Express.js darsini yakunladingiz', time: '1 soat oldin', icon: '✅' },
+      { type: 'test', text: 'Node.js quiz\'da 72% natija oldingiz', time: 'Kecha', icon: '📝' },
+      { type: 'course', text: 'Node.js kursiga yozildingiz', time: '1 hafta oldin', icon: '📚' },
+    ],
+  },
+  '4': { // Bobur Rahimov
+    purchasedIds: ['1', '3', '4', '5', '6'],
+    progresses: { '1': 100, '3': 45, '4': 80, '5': 20, '6': 60 },
+    hoursLearned: '120h',
+    testsPassed: 28,
+    streak: 15,
+    recentActivity: [
+      { type: 'cert', text: 'React.js sertifikatini oldingiz', time: '1 kun oldin', icon: '🏆' },
+      { type: 'lesson', text: 'Flutter darsini yakunladingiz', time: '3 soat oldin', icon: '✅' },
+      { type: 'test', text: 'DevOps quiz\'da 91% natija oldingiz', time: '2 kun oldin', icon: '📝' },
+    ],
+  },
+  '5': { // Sarvinoz Mirzaeva
+    purchasedIds: ['4', '1'],
+    progresses: { '4': 70, '1': 25 },
+    hoursLearned: '32h',
+    testsPassed: 7,
+    streak: 5,
+    recentActivity: [
+      { type: 'lesson', text: 'Figma darsini yakunladingiz', time: '4 soat oldin', icon: '✅' },
+      { type: 'test', text: 'Design quiz\'da 88% natija oldingiz', time: 'Kecha', icon: '📝' },
+      { type: 'course', text: 'React.js kursiga yozildingiz', time: '5 kun oldin', icon: '📚' },
+    ],
+  },
+  '6': { // Jasur Toshmatov
+    purchasedIds: ['1', '2', '3', '6'],
+    progresses: { '1': 90, '2': 75, '3': 30, '6': 50 },
+    hoursLearned: '95h',
+    testsPassed: 19,
+    streak: 11,
+    recentActivity: [
+      { type: 'lesson', text: 'Docker darsini yakunladingiz', time: '2 soat oldin', icon: '✅' },
+      { type: 'test', text: 'React quiz\'da 94% natija oldingiz', time: 'Kecha', icon: '📝' },
+      { type: 'cert', text: 'Node.js sertifikatini oldingiz', time: '3 kun oldin', icon: '🏆' },
+    ],
+  },
+  '7': { // Malika Xolmatova
+    purchasedIds: ['4'],
+    progresses: { '4': 15 },
+    hoursLearned: '8h',
+    testsPassed: 1,
+    streak: 1,
+    recentActivity: [
+      { type: 'course', text: 'Figma kursiga yozildingiz', time: '2 kun oldin', icon: '📚' },
+      { type: 'lesson', text: 'Birinchi darsni yakunladingiz', time: '1 kun oldin', icon: '✅' },
+    ],
+  },
+  '8': { // Sherzod Nazarov
+    purchasedIds: ['1', '2', '3', '4', '5', '6'],
+    progresses: { '1': 100, '2': 100, '3': 85, '4': 100, '5': 60, '6': 75 },
+    hoursLearned: '210h',
+    testsPassed: 45,
+    streak: 30,
+    recentActivity: [
+      { type: 'cert', text: 'Figma sertifikatini oldingiz', time: '2 soat oldin', icon: '🏆' },
+      { type: 'lesson', text: 'Python darsini yakunladingiz', time: 'Kecha', icon: '✅' },
+      { type: 'test', text: 'Flutter quiz\'da 96% natija oldingiz', time: '2 kun oldin', icon: '📝' },
+      { type: 'cert', text: 'React.js sertifikatini oldingiz', time: '1 hafta oldin', icon: '🏆' },
+    ],
+  },
+  '9': { // Nargiza Abdullayeva
+    purchasedIds: ['1', '4'],
+    progresses: { '1': 40, '4': 55 },
+    hoursLearned: '28h',
+    testsPassed: 6,
+    streak: 4,
+    recentActivity: [
+      { type: 'lesson', text: 'React State darsini yakunladingiz', time: '3 soat oldin', icon: '✅' },
+      { type: 'test', text: 'Figma quiz\'da 79% natija oldingiz', time: 'Kecha', icon: '📝' },
+      { type: 'course', text: 'Figma kursiga yozildingiz', time: '1 hafta oldin', icon: '📚' },
+    ],
+  },
+}

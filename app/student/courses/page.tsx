@@ -5,10 +5,15 @@ import { Card, ProgressBar } from '@/components/ui'
 import { mockCourses, mockLessons, getYoutubeId, Lesson } from '@/lib/data'
 import { useTheme } from '@/lib/theme'
 
-const purchasedIds = ['1', '2', '4']
-const progresses: Record<string, number> = { '1': 68, '2': 35, '4': 90 }
+import { useAuth } from '@/lib/auth'
+import { studentData } from '@/lib/data'
 
 export default function StudentCoursesPage() {
+  const { user } = useAuth()
+  const data = studentData[user?.id || '2'] || studentData['2']
+  const purchasedIds = data.purchasedIds
+  const progresses = data.progresses
+  
   const { t } = useTheme()
   const [search, setSearch] = useState('')
   const [tab, setTab] = useState<'all' | 'my'>('my')
@@ -21,6 +26,8 @@ export default function StudentCoursesPage() {
     const matchTab = tab === 'all' || purchasedIds.includes(c.id)
     return matchSearch && matchTab
   })
+
+  
 
   return (
     <div className="space-y-6 animate-fade-in">

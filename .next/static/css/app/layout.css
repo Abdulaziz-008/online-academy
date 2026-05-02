@@ -681,6 +681,9 @@ video {
 .block{
   display: block;
 }
+.inline-block{
+  display: inline-block;
+}
 .flex{
   display: flex;
 }
@@ -755,6 +758,9 @@ video {
 }
 .h-screen{
   height: 100vh;
+}
+.max-h-48{
+  max-height: 12rem;
 }
 .min-h-screen{
   min-height: 100vh;
@@ -932,6 +938,9 @@ video {
 .items-center{
   align-items: center;
 }
+.justify-end{
+  justify-content: flex-end;
+}
 .justify-center{
   justify-content: center;
 }
@@ -990,6 +999,16 @@ video {
   --tw-space-y-reverse: 0;
   margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
+}
+.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.375rem * var(--tw-space-y-reverse));
+}
+.space-y-2 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
 }
 .divide-y > :not([hidden]) ~ :not([hidden]){
   --tw-divide-y-reverse: 0;
@@ -1141,6 +1160,9 @@ video {
 .p-8{
   padding: 2rem;
 }
+.p-2\.5{
+  padding: 0.625rem;
+}
 .px-1{
   padding-left: 0.25rem;
   padding-right: 0.25rem;
@@ -1221,6 +1243,10 @@ video {
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+.py-12{
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
 .pb-4{
   padding-bottom: 1rem;
 }
@@ -1235,6 +1261,9 @@ video {
 }
 .pt-2{
   padding-top: 0.5rem;
+}
+.pt-1{
+  padding-top: 0.25rem;
 }
 .text-left{
   text-align: left;
@@ -1849,13 +1878,56 @@ body {
 
 @media (min-width: 640px){
 
+  .sm\:inline{
+    display: inline;
+  }
+
+  .sm\:hidden{
+    display: none;
+  }
+
+  .sm\:h-12{
+    height: 3rem;
+  }
+
+  .sm\:w-12{
+    width: 3rem;
+  }
+
   .sm\:flex-row{
     flex-direction: row;
+  }
+
+  .sm\:gap-4{
+    gap: 1rem;
+  }
+
+  .sm\:gap-2{
+    gap: 0.5rem;
+  }
+
+  .sm\:gap-1\.5{
+    gap: 0.375rem;
   }
 
   .sm\:px-10{
     padding-left: 2.5rem;
     padding-right: 2.5rem;
+  }
+
+  .sm\:px-5{
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .sm\:px-3{
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .sm\:text-2xl{
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 }
 

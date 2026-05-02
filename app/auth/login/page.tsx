@@ -30,15 +30,6 @@ export default function LoginPage() {
     }
   }
 
-  const demoLogin = (role: 'admin' | 'student') => {
-  if (role === 'admin') {
-    setEmail('admin@academy.uz')
-    setPassword('admin123')
-  } else {
-    setEmail('student@academy.uz')
-    setPassword('student123')
-  }
-}
 
   return (
     <div className="min-h-screen flex relative overflow-hidden"
@@ -63,17 +54,17 @@ export default function LoginPage() {
             style={{ background: 'linear-gradient(135deg,#0284c7,#0ea5e9)' }}>
             <GraduationCap size={20} className="text-white" />
           </div>
-          <span className="font-display font-bold text-xl text-white">EduAdmin</span>
+          <span className="font-display font-bold text-xl" style={{color:'#ffffff'}}>EduAdmin</span>
         </div>
 
         <div>
           <div className="mb-6">
             <span className="text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full"
-              style={{ background: 'rgba(14,165,233,0.2)', color: '#7dd3fc' }}>
+              style={{ background: 'rgba(14,165,233,0.2)', color: '#7dd3fc' }}> 
               Online Academy Platform
             </span>
           </div>
-          <h2 className="font-display font-bold text-5xl text-white leading-tight mb-6">
+          <h2 className="font-display font-bold text-5xl leading-tight mb-6" style={{color:'#ffffff'}}>
             Ta'limni boshqar,<br />
             <span className="gradient-text">kelajakni qur</span>
           </h2>
@@ -90,8 +81,8 @@ export default function LoginPage() {
               <div key={i} className="rounded-xl p-4 text-center"
                 style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)' }}>
                 <div className="flex justify-center mb-2 text-sky-300">{stat.icon}</div>
-                <div className="font-display font-bold text-xl text-white">{stat.value}</div>
-                <div className="text-xs text-blue-300 mt-0.5 opacity-70">{stat.label}</div>
+                <div className="font-display font-bold text-xl" style={{color:'#ffffff'}}>{stat.value}</div>
+                <div className="text-xs mt-0.5" style={{color:'rgba(255,255,255,0.55)'}}>{stat.label}</div>
               </div>
             ))}
           </div>
@@ -115,35 +106,10 @@ export default function LoginPage() {
         </div>
 
         <div className="mb-8">
-          <h1 className="font-display font-bold text-3xl text-white mb-2">Xush kelibsiz 👋</h1>
+          <h1 className="font-display font-bold text-3xl" style={{color:'#ffffff'}}>Xush kelibsiz 👋</h1>
           <p style={{ color: 'rgba(255,255,255,0.5)' }}>Davom etish uchun hisobingizga kiring</p>
         </div>
 
-        {/* Demo buttons */}
-        <div className="grid grid-cols-2 gap-3 mb-6">
-          <button
-            onClick={() => demoLogin('admin')}
-            className="p-3 rounded-xl text-left transition-all"
-            style={{ background: 'rgba(14,165,233,0.1)', border: '1px solid rgba(14,165,233,0.25)' }}
-          >
-            <div className="text-xs text-sky-400 font-bold mb-0.5">Demo Admin</div>
-            <div className="text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>admin@academy.uz</div>
-          </button>
-          <button
-            onClick={() => demoLogin('student')}
-            className="p-3 rounded-xl text-left transition-all"
-            style={{ background: 'rgba(249,115,22,0.1)', border: '1px solid rgba(249,115,22,0.25)' }}
-          >
-            <div className="text-xs text-orange-400 font-bold mb-0.5">Demo Student</div>
-            <div className="text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>student@academy.uz</div>
-          </button>
-        </div>
-
-        <div className="flex items-center gap-3 mb-6">
-          <div className="flex-1 h-px" style={{ background: 'rgba(255,255,255,0.1)' }} />
-          <span className="text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>yoki email bilan</span>
-          <div className="flex-1 h-px" style={{ background: 'rgba(255,255,255,0.1)' }} />
-        </div>
 
         <form onSubmit={handleLogin} className="space-y-4">
           {/* Email */}
@@ -278,10 +244,38 @@ export default function LoginPage() {
         {/* Hint */}
         <div className="mt-6 p-4 rounded-xl"
           style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
-          <p className="text-xs text-center" style={{ color: 'rgba(255,255,255,0.3)' }}>
-            Admin: <span style={{ color: 'rgba(255,255,255,0.55)' }}>admin@academy.uz / admin123</span><br />
-            Student: <span style={{ color: 'rgba(255,255,255,0.55)' }}>student@academy.uz / student123</span>
+          <p className="text-xs font-semibold mb-2" style={{ color: 'rgba(255,255,255,0.4)' }}>
+            Demo hisoblar:
           </p>
+          <div className="space-y-1.5">
+            {[
+              { label: 'Admin', email: 'admin@academy.uz', password: 'admin123' },
+              { label: 'Alisher', email: 'alisher@mail.uz', password: 'alisher123' },
+              { label: 'Dilnoza', email: 'dilnoza@gmail.com', password: 'dilnoza123' },
+              { label: 'Bobur', email: 'bobur@mail.uz', password: 'bobur123' },
+              { label: 'Sarvinoz', email: 'sarvinoz@gmail.com', password: 'sarvinoz123' },
+              { label: 'Jasur', email: 'jasur@mail.uz', password: 'jasur123' },
+              { label: 'Malika', email: 'malika@gmail.com', password: 'malika123' },
+              { label: 'Sherzod', email: 'sherzod@mail.uz', password: 'sherzod123' },
+              { label: 'Nargiza', email: 'nargiza@gmail.com', password: 'nargiza123' },
+            ].map((u, i) => (
+              <button
+                key={i}
+                onClick={() => { setEmail(u.email); setPassword(u.password) }}
+                className="w-full flex items-center justify-between px-3 py-1.5 rounded-lg transition-all text-left"
+                style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
+                onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}
+                onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.03)'}
+              >
+                <span className="text-xs font-semibold" style={{ color: i === 0 ? '#0ea5e9' : '#f97316' }}>
+                  {i === 0 ? '👑' : '👤'} {u.label}
+                </span>
+                <span className="text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>
+                  {u.email}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>
