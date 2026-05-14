@@ -4,6 +4,7 @@ import { Search, Download, RefreshCw, CheckCircle, XCircle, Clock, ArrowDownLeft
 import { Card, Badge } from '@/components/ui'
 import { mockPayments, formatCurrency } from '@/lib/data'
 import { useTheme } from '@/lib/theme'
+// import "../../globals.css"
 
 const methodColors: Record<string, string> = {
   Payme: '#0ea5e9',
@@ -37,6 +38,8 @@ export default function PaymentsPage() {
     return <ArrowDownLeft size={14} className="text-gray-400" />
   }
 
+const [showDropdown, setShowDropdown] = useState(false)
+
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Stats */}
@@ -67,20 +70,153 @@ export default function PaymentsPage() {
         }
       >
         {/* Filters */}
-        <div className="flex flex-col sm:flex-row gap-3 px-5 py-4" style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-          <div className="relative flex-1">
-            <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
-            <input className="input-base pl-9 text-sm" style={{ height: 38 }} placeholder="ID yoki ism bo'yicha qidiring..." value={search} onChange={e => setSearch(e.target.value)} />
-          </div>
-          <div className="flex gap-1 p-1 rounded-xl" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
-            {['all', 'success', 'pending', 'failed', 'refunded'].map(s => (
-              <button key={s} onClick={() => setStatusFilter(s)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${statusFilter === s ? 'bg-sky-500 text-white' : 'text-gray-400 hover:text-white'}`}>
-                {s === 'all' ? 'Barchasi' : s === 'success' ? 'Muvaffaqiyatli' : s === 'pending' ? 'Kutilmoqda' : s === 'failed' ? 'Rad etilgan' : 'Qaytarilgan'}
-              </button>
-            ))}
-          </div>
-        </div>
+        <div className="flex flex-col sm:flex-row gap-3 px-5 py-4"
+  style={{ borderBottom: '1px solid var(--color-border)' }}>
+  
+  {/* Search */}
+  <div className="relative flex-1">
+    <Search size={15} className="absolute top-1/2 -translate-y-1/2 pointer-events-none text-gray-500" style={{ left: 14 }} />
+    <input
+      placeholder="ID yoki ism bo'yicha qidiring..."
+      value={search}
+      onChange={e => setSearch(e.target.value)}
+      style={{
+        width: '100%',
+        height: 38,
+        paddingLeft: 40,
+        paddingRight: 14,
+        paddingTop: 8,
+        paddingBottom: 8,
+        background: 'rgba(255,255,255,0.05)',
+        border: '1px solid var(--color-border)',
+        borderRadius: 8,
+        color: 'var(--color-text)',
+        fontSize: 13,
+        outline: 'none',
+        fontFamily: 'inherit',
+      }}
+    />
+  </div>
+
+  {/* Katta ekran — tugmalar */}
+  <div className="hidden sm:flex gap-1 p-1 rounded-xl"
+    style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
+    {[
+      { key: 'all', label: 'Barchasi' },
+      { key: 'success', label: 'Muvaffaqiyatli' },
+      { key: 'pending', label: 'Kutilmoqda' },
+      { key: 'failed', label: 'Rad etildi' },
+      { key: 'refunded', label: 'Qaytarilgan' },
+    ].map(s => (
+      <button
+        key={s.key}
+        onClick={() => setStatusFilter(s.key)}
+        className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap
+          ${statusFilter === s.key ? 'bg-sky-500 text-white' : 'text-gray-400 hover:text-white'}`}
+      >
+        {s.label}
+      </button>
+    ))}
+  </div>
+
+  {/* Kichik ekran — custom select */}
+  <div className="relative sm:hidden">
+  <button
+    onClick={() => setShowDropdown(!showDropdown)}
+    style={{
+      width: '100%',
+      height: 38,
+      paddingLeft: 12,
+      paddingRight: 32,
+      background: 'var(--color-surface-2)',
+      border: '1px solid var(--color-border)',
+      borderRadius: 8,
+      color: 'var(--color-text)',
+      fontSize: 13,
+      fontWeight: 500,
+      fontFamily: 'inherit',
+      cursor: 'pointer',
+      textAlign: 'left',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      boxSizing: 'border-box',
+    }}
+  >
+    <span>
+      {statusFilter === 'all' ? 'Barchasi' :
+       statusFilter === 'success' ? 'Muvaffaqiyatli' :
+       statusFilter === 'pending' ? 'Kutilmoqda' :
+       statusFilter === 'failed' ? 'Rad etildi' : 'Qaytarilgan'}
+    </span>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+      style={{ flexShrink: 0, transform: showDropdown ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>
+      <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.5"
+        strokeLinecap="round" strokeLinejoin="round"
+        style={{ color: 'var(--color-text-muted)' }} />
+    </svg>
+  </button>
+
+  {showDropdown && (
+    <>
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 z-10"
+        onClick={() => setShowDropdown(false)}
+      />
+      {/* Options */}
+      <div
+        className="absolute left-0 right-0 z-20 mt-1 rounded-xl overflow-hidden shadow-xl"
+        style={{
+          background: 'var(--color-surface-2)',
+          border: '1px solid var(--color-border)',
+          width: '100%',
+        }}
+      >
+        {[
+          { key: 'all', label: 'Barchasi' },
+          { key: 'success', label: 'Muvaffaqiyatli' },
+          { key: 'pending', label: 'Kutilmoqda' },
+          { key: 'failed', label: 'Rad etildi' },
+          { key: 'refunded', label: 'Qaytarilgan' },
+        ].map(s => (
+          <button
+            key={s.key}
+            onClick={() => { setStatusFilter(s.key); setShowDropdown(false) }}
+            style={{
+              width: '100%',
+              padding: '10px 14px',
+              textAlign: 'left',
+              fontSize: 13,
+              fontWeight: statusFilter === s.key ? 600 : 400,
+              fontFamily: 'inherit',
+              cursor: 'pointer',
+              background: statusFilter === s.key ? 'rgba(14,165,233,0.1)' : 'transparent',
+              color: statusFilter === s.key ? '#0ea5e9' : 'var(--color-text)',
+              border: 'none',
+              borderBottom: '1px solid var(--color-border)',
+              display: 'block',
+            }}
+            onMouseEnter={e => {
+              if (statusFilter !== s.key)
+                e.currentTarget.style.background = 'rgba(255,255,255,0.05)'
+            }}
+            onMouseLeave={e => {
+              if (statusFilter !== s.key)
+                e.currentTarget.style.background = 'transparent'
+            }}
+          >
+            {s.label}
+          </button>
+        ))}
+      </div>
+    </>
+  )}
+</div>
+
+</div>
+
+
 
         <div className="overflow-x-auto">
           <table className="w-full">

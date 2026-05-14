@@ -137,9 +137,28 @@ export default function CoursesPage() {
         {/* Filters */}
         <div className="flex flex-col sm:flex-row gap-3 px-5 py-4" style={{ borderBottom: '1px solid var(--color-border)' }}>
           <div className="relative flex-1">
-            <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
-            <input className="input-base pl-9 text-sm" style={{ height: 38 }}
-              placeholder="Kurs nomini qidiring..." value={search} onChange={e => setSearch(e.target.value)} />
+            <Search size={15} className="absolute top-1/2 -translate-y-1/2 pointer-events-none text-gray-500" style={{ left: 14 }} />
+            <input
+              placeholder="Kurs nomini qidiring..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              style={{
+                width: '100%',
+                height: 38,
+                paddingLeft: 40,
+                paddingRight: 14,
+                paddingTop: 8,
+                paddingBottom: 8,
+                background: 'rgba(255,255,255,0.05)',
+                border: '1px solid var(--color-border)',
+                borderRadius: 8,
+                color: 'var(--color-text)',
+                fontSize: 13,
+                outline: 'none',
+                fontFamily: 'inherit',
+                boxSizing: 'border-box',
+              }}
+            />
           </div>
           <div className="flex gap-1 flex-wrap">
             {categories.map(cat => (

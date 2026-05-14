@@ -595,6 +595,9 @@ video {
 .top-8{
   top: 2rem;
 }
+.z-10{
+  z-index: 10;
+}
 .z-20{
   z-index: 20;
 }
@@ -614,9 +617,6 @@ video {
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
-}
-.mb-0\.5{
-  margin-bottom: 0.125rem;
 }
 .mb-1{
   margin-bottom: 0.25rem;
@@ -753,9 +753,6 @@ video {
 .h-full{
   height: 100%;
 }
-.h-px{
-  height: 1px;
-}
 .h-screen{
   height: 100vh;
 }
@@ -871,6 +868,9 @@ video {
   --tw-translate-x: 0px;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+.transform{
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
 @keyframes fadeIn{
 
   0%{
@@ -980,6 +980,16 @@ video {
   margin-top: calc(0.125rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.125rem * var(--tw-space-y-reverse));
 }
+.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.375rem * var(--tw-space-y-reverse));
+}
+.space-y-2 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
 .space-y-3 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse: 0;
   margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
@@ -999,16 +1009,6 @@ video {
   --tw-space-y-reverse: 0;
   margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
-}
-.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){
-  --tw-space-y-reverse: 0;
-  margin-top: calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(0.375rem * var(--tw-space-y-reverse));
-}
-.space-y-2 > :not([hidden]) ~ :not([hidden]){
-  --tw-space-y-reverse: 0;
-  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
 }
 .divide-y > :not([hidden]) ~ :not([hidden]){
   --tw-divide-y-reverse: 0;
@@ -1145,6 +1145,9 @@ video {
 .p-2{
   padding: 0.5rem;
 }
+.p-2\.5{
+  padding: 0.625rem;
+}
 .p-3{
   padding: 0.75rem;
 }
@@ -1159,9 +1162,6 @@ video {
 }
 .p-8{
   padding: 2rem;
-}
-.p-2\.5{
-  padding: 0.625rem;
 }
 .px-1{
   padding-left: 0.25rem;
@@ -1207,6 +1207,10 @@ video {
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
 }
+.py-12{
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
 .py-16{
   padding-top: 4rem;
   padding-bottom: 4rem;
@@ -1243,10 +1247,6 @@ video {
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
-.py-12{
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
 .pb-4{
   padding-bottom: 1rem;
 }
@@ -1259,11 +1259,11 @@ video {
 .pr-10{
   padding-right: 2.5rem;
 }
-.pt-2{
-  padding-top: 0.5rem;
-}
 .pt-1{
   padding-top: 0.25rem;
+}
+.pt-2{
+  padding-top: 0.5rem;
 }
 .text-left{
   text-align: left;
@@ -1427,9 +1427,6 @@ video {
 .opacity-60{
   opacity: 0.6;
 }
-.opacity-70{
-  opacity: 0.7;
-}
 .opacity-80{
   opacity: 0.8;
 }
@@ -1575,6 +1572,23 @@ html.light .text-gray-600 {
 
 html.light .text-gray-700 {
   color: #374151 !important;
+}
+
+/* Select option light mode fix */
+html.light select option {
+  background: #ffffff;
+  color: #1a1a2e;
+}
+
+html.dark select option {
+  background: #1a1a2e;
+  color: #e8e8f0;
+}
+
+/* Select light mode background */
+html.light select {
+  background: #ffffff !important;
+  color: #1a1a2e !important;
 }
 
 html, body {
@@ -1882,6 +1896,10 @@ body {
     display: inline;
   }
 
+  .sm\:flex{
+    display: flex;
+  }
+
   .sm\:hidden{
     display: none;
   }
@@ -1898,16 +1916,16 @@ body {
     flex-direction: row;
   }
 
-  .sm\:gap-4{
-    gap: 1rem;
+  .sm\:gap-1\.5{
+    gap: 0.375rem;
   }
 
   .sm\:gap-2{
     gap: 0.5rem;
   }
 
-  .sm\:gap-1\.5{
-    gap: 0.375rem;
+  .sm\:gap-4{
+    gap: 1rem;
   }
 
   .sm\:px-10{
@@ -1915,14 +1933,14 @@ body {
     padding-right: 2.5rem;
   }
 
-  .sm\:px-5{
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-
   .sm\:px-3{
     padding-left: 0.75rem;
     padding-right: 0.75rem;
+  }
+
+  .sm\:px-5{
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
 
   .sm\:text-2xl{

@@ -172,11 +172,19 @@ export function Modal({ isOpen, onClose, title, children }: { isOpen: boolean; o
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
       <div
-        className="relative w-full max-w-lg rounded-2xl shadow-2xl animate-slide-up"
-        style={{ background: 'var(--color-surface-2)', border: '1px solid var(--color-border)' }}
+        className="relative w-full max-w-lg rounded-2xl shadow-2xl animate-slide-up flex flex-col"
+        style={{
+          background: 'var(--color-surface-2)',
+          border: '1px solid var(--color-border)',
+          maxHeight: '85vh',
+        }}
       >
-        <div className="flex items-center justify-between p-5" style={{ borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-          <h3 className="font-display font-bold text-lg" style={{color:'var(--color-text)'}}>{title}</h3>
+        {/* Header — scroll qilmaydi */}
+        <div
+          className="flex items-center justify-between px-5 py-4 flex-shrink-0"
+          style={{ borderBottom: '1px solid var(--color-border)' }}
+        >
+          <h3 className="font-display font-bold text-lg" style={{ color: 'var(--color-text)' }}>{title}</h3>
           <button
             onClick={onClose}
             className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all"
@@ -184,7 +192,11 @@ export function Modal({ isOpen, onClose, title, children }: { isOpen: boolean; o
             ✕
           </button>
         </div>
-        <div className="p-5">{children}</div>
+
+        {/* Content — scroll bo'ladi */}
+        <div className="p-5 overflow-y-auto flex-1">
+          {children}
+        </div>
       </div>
     </div>
   )
